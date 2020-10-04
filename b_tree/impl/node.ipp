@@ -1,79 +1,83 @@
-#ifndef B_TREE_NODE_IPP_
-#define B_TREE_NODE_IPP_
+#ifndef DRAWABLE_NODE_IPP_
+#define DRAWABLE_NODE_IPP_
 
 #include "node.hpp"
 
 #include "b_tree.hpp"
 
-namespace eda {
+namespace drawable {
 
-template <int m, typename T>
-BTree<m, T>::Node::Node() {
+namespace b_tree {
+
+template <typename T, int m>
+Node<T, m>::Node() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}
 }
 
-template <int m, typename T>
-void BTree<m, T>::Node::search(T key) {
+template <typename T, int m>
+void Node<T, m>::search(T key) {
 	
 }
 
-template <int m, typename T>
-int BTree<m, T>::Node::values() {
+template <typename T, int m>
+int Node<T, m>::values() {
 	return this->capacity_ - 1;
 }
 
-template <int m, typename T>
-int BTree<m, T>::Node::children() {
+template <typename T, int m>
+int Node<T, m>::children() {
 	return this->is_leave() ? 0 : this->capacity_;
 }
 
-template <int m, typename T>
-T BTree<m, T>::Node::value(int index) {
+template <typename T, int m>
+T Node<T, m>::value(int index) {
 	return this->values_[index];
 }
 
-template <int m, typename T>
-typename BTree<m, T>::Node *BTree<m, T>::Node::child(int index) {
+template <typename T, int m>
+Node<T, m> *BTree<T, m>::Node<T, m>::child(int index) {
 	return this->children_[index];
 }
 
-template <int m, typename T>
-bool BTree<m, T>::Node::is_leave() {
+template <typename T, int m>
+bool Node<T, m>::is_leave() {
 	return this->capacity_ == 0 || this->children_[0] == nullptr;
 }
 
-template <int m, typename T>
-int BTree<m, T>::Node::leaves_() {
+template <typename T, int m>
+int Node<T, m>::leaves() {
 	if (this->is_leave()) return 1;
 
 	int total = 0;
 
 	for (int i = 0; i < this->capacity_; i++) {
 		if (this->children_[i] != nullptr) {
-			total += this->children_[i]->leaves_();
+			total += this->children_[i]->leaves();
 		}
 	}
 
 	return total;
 }
 
-template <int m, typename T>
-int BTree<m, T>::Node::leave_level_values_() {
+template <typename T, int m>
+int Node<T, m>::leave_level_values() {
 	if (this->is_leave()) return this->capacity_ - 1;
 
 	int total = 0;
 
 	for (int i = 0; i < this->capacity_; i++) {
 		if (this->children_[i] != nullptr) {
-			total += this->children_[i]->leave_level_values_();
+			total += this->children_[i]->leave_level_values();
 		}
 	}
 
 	return total;
 }
 
-} // namespace eda
+} // namespace b_tree
 
-#endif // B_TREE_NODE_IPP_
+} // namespace drawable
+
+#endif // DRAWABLE_NODE_IPP_

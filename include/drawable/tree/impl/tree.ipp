@@ -1,21 +1,21 @@
-#ifndef B_TREE_DRAWABLE_TREE_TREE_IPP_
-#define B_TREE_DRAWABLE_TREE_TREE_IPP_
+#ifndef DRAWABLE_TREE_TREE_IPP_
+#define DRAWABLE_TREE_TREE_IPP_
 
 #include "drawable/tree/tree.hpp"
 
-namespace eda {
-
 namespace drawable {
+
+namespace tree {
 
 template <typename T>
 void Tree<T>::render(double x, double y) {
-	if (this->root_() != nullptr) {
-		this->root_()->render(x, y);
+	if (this->root() != nullptr) {
+		this->root()->render(x, y);
 	}
 }
 
+} // namespace tree
+
 } // namespace drawable
 
-} // namespace eda
-
-#endif // B_TREE_DRAWABLE_TREE_TREE_IPP_
+#endif // DRAWABLE_TREE_TREE_IPP_

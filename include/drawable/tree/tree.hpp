@@ -1,28 +1,25 @@
-#ifndef B_TREE_DRAWABLE_TREE_TREE_HPP_
-#define B_TREE_DRAWABLE_TREE_TREE_HPP_
+#ifndef DRAWABLE_TREE_TREE_HPP_
+#define DRAWABLE_TREE_TREE_HPP_
 
 #include "drawable/drawable.hpp"
 
-namespace eda {
-
 namespace drawable {
+
+namespace tree {
 
 template <typename T>
 class Tree : Drawable {
-protected:
-	class Node;
-
 public:
 	void render(double x, double y);
 
 protected:
-	virtual Node *root_() = 0;
+	virtual Node *root() = 0;
 };
+
+} // namespace tree
 
 } // namespace drawable
 
-} // namespace eda
-
 #include "drawable/tree/impl/tree.ipp"
 
-#endif // B_TREE_DRAWABLE_TREE_TREE_HPP_
+#endif // DRAWABLE_TREE_TREE_HPP_

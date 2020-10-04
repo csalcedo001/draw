@@ -1,18 +1,17 @@
-#ifndef B_TREE_DRAWABLE_TREE_NODE_IPP_
-#define B_TREE_DRAWABLE_TREE_NODE_IPP_
+#ifndef DRAWABLE_TREE_NODE_IPP_
+#define DRAWABLE_TREE_NODE_IPP_
 
 #include "drawable/tree/tree.hpp"
 
 #include "drawable/drawable.hpp"
 #include "drawable/shape.hpp"
 
-namespace eda {
-
 namespace drawable {
 
+namespace tree {
+
 template <typename T>
-void Tree<T>::Node::render(double x, double y) {
-    std::cout << this->children() << ' ' << x << ' ' << y << std::endl;
+void Node<T>::render(double x, double y) {
 	for (float i = 0; i < this->values(); i++) {
 		render_shape(this->value(i), i + x - this->values() / 2.0f, y);
 	}
@@ -29,12 +28,12 @@ void Tree<T>::Node::render(double x, double y) {
 }
 
 template <typename T>
-int Tree<T>::Node::width() {
-	return this->leaves_() + this->leave_level_values_() - 1;
+int Node<T>::width() {
+	return this->leaves() + this->leave_level_values() - 1;
 }
+
+} // namespace tree
 
 } // namespace drawable
 
-} // namespace eda
-
-#endif // B_TREE_DRAWABLE_TREE_NODE_IPP_
+#endif // DRAWABLE_TREE_NODE_IPP_

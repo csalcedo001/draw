@@ -1,16 +1,17 @@
-#ifndef B_TREE_NODE_HPP_
-#define B_TREE_NODE_HPP_
+#ifndef DRAWABLE_NODE_HPP_
+#define DRAWABLE_NODE_HPP_
 
-#include "b_tree.hpp"
 #include "drawable/tree.hpp"
 
-namespace eda {
+namespace drawable {
 
-template <int m, typename T>
-class BTree<m, T>::Node : public drawable::Tree<T>::Node {
+namespace b_tree {
+
+template <typename T, int m>
+class Node : public drawable::Tree<T>::Node {
 public:
 	std::array<T, m> values_;
-	std::array<Node *, m + 1> children_;
+	std::array<Node<T, m> *, m + 1> children_;
 	int capacity_;
 
 public:
@@ -22,16 +23,18 @@ public:
 	int values();
 
 	T value(int);
-	Node *child(int);
+	Node<T, m> *child(int);
 	bool is_leave();
 
 protected:
-	int leaves_();
-	int leave_level_values_();
+	int leaves();
+	int leave_level_values();
 };
 
-} // namespace eda
+} // namespace b_tree
+
+} // namespace drawable
 
 #include "impl/node.ipp"
 
-#endif // B_TREE_NODE_HPP_
+#endif // DRAWABLE_NODE_HPP_
