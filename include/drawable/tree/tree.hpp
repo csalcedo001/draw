@@ -11,7 +11,7 @@ namespace tree {
 template <typename T>
 class Tree : public Drawable {
 public:
-	// void render(double x, double y);
+	void render(double x, double y);
 
 protected:
 	virtual Node<T> *root() = 0;

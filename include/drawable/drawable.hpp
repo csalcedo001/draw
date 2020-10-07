@@ -8,7 +8,7 @@ void render(T &, double, double);
 
 class Drawable {
 public:
-	void render(double x, double y);
+	virtual void render(double x, double y) = 0;
 };
 
 } // namespace drawable

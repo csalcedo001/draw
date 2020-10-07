@@ -11,7 +11,7 @@ template <typename T>
 class Node : public Drawable {
 public:
 	int width();
-	// void render(double x, double y);
+	void render(double x, double y);
 
 public:
 	virtual int values() = 0;
