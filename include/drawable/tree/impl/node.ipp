@@ -1,7 +1,7 @@
 #ifndef DRAWABLE_TREE_NODE_IPP_
 #define DRAWABLE_TREE_NODE_IPP_
 
-#include "drawable/tree/tree.hpp"
+#include "drawable/tree/node.hpp"
 
 #include "drawable/drawable.hpp"
 #include "drawable/shape.hpp"

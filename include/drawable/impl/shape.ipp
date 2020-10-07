@@ -1,7 +1,9 @@
-#ifndef B_TREE_DRAWABLE_SHAPE_IPP_
-#define B_TREE_DRAWABLE_SHAPE_IPP_
+#ifndef DRAWABLE_SHAPE_IPP_
+#define DRAWABLE_SHAPE_IPP_
 
 #include "drawable/shape.hpp"
+
+#include <vector>
 
 #include <GL/glew.h>
 
@@ -17,8 +19,6 @@
 #include <common/texture.hpp>
 #include <common/controls.hpp>
 #include <common/text2D.hpp>
-
-namespace eda {
 
 namespace drawable {
 
@@ -136,8 +136,6 @@ void render_shape(std::vector<int> &v, double x, double y) {
     }
 }
 
-} // namespace eda
-
 } // namespace drawable
 
-#endif // B_TREE_DRAWABLE_SHAPE_IPP_
+#endif // DRAWABLE_SHAPE_IPP_

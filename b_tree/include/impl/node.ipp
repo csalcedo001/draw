@@ -37,7 +37,7 @@ T Node<T, m>::value(int index) {
 }
 
 template <typename T, int m>
-Node<T, m> *BTree<T, m>::Node<T, m>::child(int index) {
+Node<T, m> *Node<T, m>::child(int index) {
 	return this->children_[index];
 }
 

@@ -8,7 +8,7 @@ namespace drawable {
 namespace b_tree {
 
 template <typename T, int m>
-class Node : public drawable::Tree<T>::Node {
+class Node : public drawable::tree::Node<T> {
 public:
 	std::array<T, m> values_;
 	std::array<Node<T, m> *, m + 1> children_;

@@ -1,8 +1,6 @@
 #ifndef DRAWABLE_TREE_NODE_HPP_
 #define DRAWABLE_TREE_NODE_HPP_
 
-#include "drawable/tree/node.hpp"
-
 #include "drawable/drawable.hpp"
 
 namespace drawable {

@@ -11,7 +11,7 @@ namespace drawable {
 namespace b_tree {
 
 template <typename T, int m>
-class BTree : public drawable::Tree<T> {
+class BTree : public drawable::tree::Tree<T> {
 public:
 	enum State {
 		NODE_OVERFLOW,
@@ -40,7 +40,7 @@ private:
 	void print(Node<T, m> *, int level);
 	void kill(Node<T, m> *);
 
-	Node<T, m> *root_();
+	Node<T, m> *root();
 };
 
 } // namespace b_tree

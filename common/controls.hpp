@@ -4,7 +4,7 @@
 // Include GLFW
 #include <GLFW/glfw3.h>
 
-static GLFWwindow* window;
+extern GLFWwindow* window;
 
 void computeMatricesFromInputs();
 glm::mat4 getViewMatrix();

@@ -25,7 +25,7 @@ void BTree<T, m>::print() {
 template <typename T, int m>
 void BTree<T, m>::insert(T value) {
 	if (this->head_ == nullptr) {
-		this->head_ = new , m>;
+		this->head_ = new Node<T, m>;
 
 		this->head_->values_[0] = value;
 		this->head_->children_[0] = nullptr;
@@ -71,7 +71,7 @@ typename BTree<T, m>::State BTree<T, m>::insert(Node<T, m> *node, T value) {
 }
 
 template <typename T, int m>
-typename BTree<T, m>::Node<T, m> *BTree<T, m>::divide(Node<T, m> *&right_node) {
+Node<T, m> *BTree<T, m>::divide(Node<T, m> *&right_node) {
 	int mid = (m - 1) / 2;
 
 	Node<T, m> *left_node = right_node;

@@ -3,6 +3,9 @@
 
 namespace drawable {
 
+template <typename... Types>
+void render(double x, double y);
+
 class Drawable {
 public:
 	void render(double x, double y);
