@@ -62,11 +62,11 @@ add_definitions(
 
 
 add_executable(b_tree
-	b_tree/b_tree.cpp
-	b_tree/include/b_tree.hpp
-	b_tree/include/node.hpp
-	b_tree/include/impl/b_tree.ipp
-	b_tree/include/impl/node.ipp
+	b_tree/main.cpp
+	b_tree/b_tree.hpp
+	b_tree/node.hpp
+	b_tree/impl/b_tree.ipp
+	b_tree/impl/node.ipp
 
 	include/drawable.hpp
 	include/drawable/drawable.hpp
@@ -74,6 +74,7 @@ add_executable(b_tree
     include/drawable/shape.hpp
 	include/drawable/tree/tree.hpp
 	include/drawable/tree/node.hpp
+    include/drawable/impl/drawable.ipp
     include/drawable/impl/shape.ipp
 	include/drawable/tree/impl/tree.ipp
 	include/drawable/tree/impl/node.ipp
@@ -108,7 +109,7 @@ if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 add_custom_command(
    TARGET b_tree POST_BUILD
-   COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/b_tree${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/b_tree/"
+   COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/b_tree${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/b_tree"
 )
 
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )

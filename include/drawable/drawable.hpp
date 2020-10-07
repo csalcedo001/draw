@@ -3,8 +3,8 @@
 
 namespace drawable {
 
-template <typename... Types>
-void render(double x, double y);
+template <typename T>
+void render(T &, double, double);
 
 class Drawable {
 public:

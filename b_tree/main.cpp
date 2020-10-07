@@ -18,7 +18,7 @@ using namespace glm;
 #include <common/text2D.hpp>
 
 #include <drawable.hpp>
-#include "include/b_tree.hpp"
+#include "b_tree.hpp"
 
 using namespace std;
 
@@ -81,7 +81,7 @@ int main() {
 	
 	drawable::init_render();
 
-	initText2D( "Holstein.DDS" );
+	initText2D( "../resources/Holstein.DDS" );
 
 	int i = 0;
 	long long t = time(nullptr);

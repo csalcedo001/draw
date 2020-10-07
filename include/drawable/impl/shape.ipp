@@ -70,7 +70,7 @@ void init_render() {
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
-    programID = LoadShaders( "StandardShading.vertexshader", "StandardShading.fragmentshader" );
+    programID = LoadShaders( "../resources/StandardShading.vertexshader", "../resources/StandardShading.fragmentshader" );
     
     MatrixID = glGetUniformLocation(programID, "MVP");
     

@@ -5,6 +5,13 @@
 #include "drawable/tree/tree.hpp"
 
 namespace drawable {
+        
+template <typename T>
+void render(tree::Tree<T> &tree, double x, double y) {
+    if (tree.root() != nullptr) {
+        tree.root()->render(x, y);
+    }
+}
 
 namespace tree {
 
@@ -14,6 +21,7 @@ namespace tree {
 // 		this->root()->render(x, y);
 // 	}
 // }
+
 
 } // namespace tree
 
