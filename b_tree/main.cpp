@@ -112,7 +112,6 @@ int main() {
 		}
 		
 		btree.render(0, 0);
-        btree.print();
 		
 		char title[] = "B TREE";
 		printText2D(title, -2, 1, 0.5);

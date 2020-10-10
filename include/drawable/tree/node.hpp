@@ -7,7 +7,7 @@ namespace drawable {
 
 namespace tree {
 
-template <typename T>
+template <typename T, typename DerivedNode>
 class Node : public Drawable {
 public:
 	int width();
@@ -18,7 +18,7 @@ public:
 	virtual int children() = 0;
 	
 	virtual T value(int) = 0;
-	virtual Node<T> *child(int) = 0;
+	virtual DerivedNode *child(int) = 0;
 	virtual bool is_leave() = 0;
 
 protected:

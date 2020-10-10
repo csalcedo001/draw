@@ -10,8 +10,8 @@ namespace drawable {
 
 namespace tree {
 
-template <typename T>
-void Node<T>::render(double x, double y) {
+template <typename T, typename DerivedNode>
+void Node<T, DerivedNode>::render(double x, double y) {
     for (float i = 0; i < this->values(); i++) {
         render_shape(this->value(i), i + x - this->values() / 2.0f, y);
     }
@@ -27,8 +27,8 @@ void Node<T>::render(double x, double y) {
     }
 }
 
-template <typename T>
-int Node<T>::width() {
+template <typename T, typename DerivedNode>
+int Node<T, DerivedNode>::width() {
 	return this->leaves() + this->leave_level_values() - 1;
 }
 

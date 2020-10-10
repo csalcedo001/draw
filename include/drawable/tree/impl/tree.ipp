@@ -8,8 +8,8 @@ namespace drawable {
 
 namespace tree {
 
-template <typename T>
-void Tree<T>::render(double x, double y) {
+template <typename T, typename Node>
+void Tree<T, Node>::render(double x, double y) {
     if (this->root() != nullptr) {
         this->root()->render(x, y);
 	}

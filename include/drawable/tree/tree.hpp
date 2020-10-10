@@ -8,13 +8,13 @@ namespace drawable {
 
 namespace tree {
 
-template <typename T>
+template <typename T, typename Node>
 class Tree : public Drawable {
 public:
 	void render(double x, double y);
 
 protected:
-	virtual Node<T> *root() = 0;
+	virtual Node *root() = 0;
 };
 
 } // namespace tree

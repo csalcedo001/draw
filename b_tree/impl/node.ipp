@@ -10,7 +10,7 @@ namespace drawable {
 namespace b_tree {
 
 template <typename T, int m>
-Node<T, m>::Node() : eda::b_tree::Node<T, m>() {
+Node<T, m>::Node() : eda::b_tree::BaseNode<T, m, Node<T, m> >() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}

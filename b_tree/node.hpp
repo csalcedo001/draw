@@ -10,14 +10,9 @@ namespace b_tree {
 
 template <typename T, int m>
 class Node :
-    public drawable::tree::Node<T>,
-    public eda::b_tree::Node<T, m>
+public drawable::tree::Node<T, Node<T, m> >,
+    public eda::b_tree::BaseNode<T, m, Node<T, m> >
 {
-public:
-	// std::array<T, m> values_;
-	// std::array<Node<T, m> *, m + 1> children_;
-	// int capacity_;
-
 public:
 	Node(void);
 
