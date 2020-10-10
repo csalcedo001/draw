@@ -103,7 +103,8 @@ create_default_target_launcher(b_tree WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
-SOURCE_GROUP(impl REGULAR_EXPRESSION ".*/.*ipp$" )
+SOURCE_GROUP(Implementation\ Files REGULAR_EXPRESSION ".*/.*ipp$" )
+SOURCE_GROUP(drawable REGULAR_EXPRESSION ".*/drawable.*" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
