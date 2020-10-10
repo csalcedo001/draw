@@ -1,23 +1,25 @@
-#ifndef DRAWABLE_NODE_HPP_
-#define DRAWABLE_NODE_HPP_
+#ifndef DRAWABLE_B_TREE_NODE_HPP_
+#define DRAWABLE_B_TREE_NODE_HPP_
 
-#include "drawable/tree.hpp"
+#include "b_tree/eda_b_tree/include/node.hpp"
+#include "drawable/tree/node.hpp"
 
 namespace drawable {
 
 namespace b_tree {
 
 template <typename T, int m>
-class Node : public drawable::tree::Node<T> {
+class Node :
+    public drawable::tree::Node<T>,
+    public eda::b_tree::Node<T, m>
+{
 public:
-	std::array<T, m> values_;
-	std::array<Node<T, m> *, m + 1> children_;
-	int capacity_;
+	// std::array<T, m> values_;
+	// std::array<Node<T, m> *, m + 1> children_;
+	// int capacity_;
 
 public:
 	Node(void);
-	
-	void search(T key);
 
 	int children();
 	int values();
@@ -35,6 +37,6 @@ protected:
 
 } // namespace drawable
 
-#include "impl/node.ipp"
+#include "b_tree/impl/node.ipp"
 
-#endif // DRAWABLE_NODE_HPP_
+#endif // DRAWABLE_B_TREE_NODE_HPP_

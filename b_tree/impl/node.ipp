@@ -1,5 +1,5 @@
-#ifndef DRAWABLE_NODE_IPP_
-#define DRAWABLE_NODE_IPP_
+#ifndef DRAWABLE_B_TREE_NODE_IPP_
+#define DRAWABLE_B_TREE_NODE_IPP_
 
 #include "node.hpp"
 
@@ -10,15 +10,10 @@ namespace drawable {
 namespace b_tree {
 
 template <typename T, int m>
-Node<T, m>::Node() {
+Node<T, m>::Node() : eda::b_tree::Node<T, m>() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}
-}
-
-template <typename T, int m>
-void Node<T, m>::search(T key) {
-	
 }
 
 template <typename T, int m>
@@ -80,4 +75,4 @@ int Node<T, m>::leave_level_values() {
 
 } // namespace drawable
 
-#endif // DRAWABLE_NODE_IPP_
+#endif // DRAWABLE_B_TREE_NODE_IPP_
