@@ -85,6 +85,7 @@ int main() {
 
 	int i = 0;
 	long long t = time(nullptr);
+    int period = 1;
 	
 	// VTK
 	
@@ -106,9 +107,9 @@ int main() {
 		
 		computeMatricesFromInputs();
 		
-		if (time(nullptr) - t >= 5) {
+		if (time(nullptr) - t >= period) {
 			btree.insert(i++);
-			t += 5;
+			t += period;
 		}
 		
 		btree.render(0, 0);
