@@ -59,39 +59,26 @@ add_definitions(
     -D_CRT_SECURE_NO_WARNINGS
 )
 
+file(GLOB_RECURSE common_src
+    "include/drawable.hpp"
+    "include/drawable/*"
+    "common/*"
+    "resources/*"
+)
 
 
+file(GLOB b_tree_src
+    b_tree/main.cpp
+    "b_tree/*.hpp"
+    "b_tree/impl/*.ipp"
+)
+file(GLOB_RECURSE b_tree_base_src
+    "b_tree/impl/eda_b_tree/include/*"
+)
 add_executable(b_tree
-	b_tree/main.cpp
-	b_tree/b_tree.hpp
-	b_tree/node.hpp
-	b_tree/impl/b_tree.ipp
-	b_tree/impl/node.ipp
-
-	include/drawable.hpp
-	include/drawable/drawable.hpp
-	include/drawable/tree.hpp
-    include/drawable/shape.hpp
-	include/drawable/tree/tree.hpp
-	include/drawable/tree/node.hpp
-    include/drawable/impl/drawable.ipp
-    include/drawable/impl/shape.ipp
-	include/drawable/tree/impl/tree.ipp
-	include/drawable/tree/impl/node.ipp
-    
-    common/shader.cpp
-    common/shader.hpp
-    common/texture.cpp
-    common/texture.hpp
-    common/controls.cpp
-    common/controls.hpp
-    common/text2D.cpp
-    common/text2D.hpp
- 
-    resources/StandardShading.fragmentshader
-    resources/StandardShading.vertexshader
-    resources/TextVertexShader.fragmentshader
-    resources/TextVertexShader.vertexshader
+    ${b_tree_src}
+    ${b_tree_base_src}
+    ${common_src}
 )
 target_link_libraries(b_tree
     ${ALL_LIBS}
@@ -101,10 +88,31 @@ create_target_launcher(b_tree WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/b_t
 create_default_target_launcher(b_tree WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/b_tree/")
 
 
+file(GLOB binomial_heap_src
+    binomial_heap/main.cpp
+    "binomial_heap/*.hpp"
+    "binomial_heap/impl/*.ipp"
+)
+file(GLOB_RECURSE binomial_heap_base_src
+    "binomial_heap/impl/eda_binomial_heap/include/*"
+)
+add_executable(binomial_heap
+    ${binomial_heap_src}
+    ${binomial_heap_base_src}
+    ${common_src}
+)
+target_link_libraries(binomial_heap
+    ${ALL_LIBS}
+)
+set_target_properties(binomial_heap PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/binomial_heap/")
+create_target_launcher(binomial_heap WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/binomial_heap/")
+
+
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
 SOURCE_GROUP(Implementation\ Files REGULAR_EXPRESSION ".*/.*ipp$" )
 SOURCE_GROUP(drawable REGULAR_EXPRESSION ".*/drawable.*" )
+SOURCE_GROUP(drawable/impl REGULAR_EXPRESSION ".*/drawable/.*ipp" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
