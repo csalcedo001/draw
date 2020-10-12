@@ -13,6 +13,10 @@ public:
 	int width();
 	void render(double x, double y);
 
+protected:
+    virtual int leaves();
+    virtual int leave_level_values();
+
 public:
 	virtual int values() = 0;
 	virtual int children() = 0;
@@ -20,10 +24,6 @@ public:
 	virtual T value(int) = 0;
 	virtual DerivedNode *child(int) = 0;
 	virtual bool is_leave() = 0;
-
-protected:
-	virtual int leaves() = 0;
-	virtual int leave_level_values() = 0;
 };
 
 } // namespace tree

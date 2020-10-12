@@ -32,6 +32,36 @@ int Node<T, DerivedNode>::width() {
 	return this->leaves() + this->leave_level_values() - 1;
 }
 
+template <typename T, typename DerivedNode>
+int Node<T, DerivedNode>::leaves() {
+    if (this->is_leave()) return 1;
+
+    int total = 0;
+
+    for (int i = 0; i < this->children(); i++) {
+        if (this->child(i) != nullptr) {
+            total += this->child(i)->leaves();
+        }
+    }
+
+    return total;
+}
+
+template <typename T, typename DerivedNode>
+int Node<T, DerivedNode>::leave_level_values() {
+    if (this->is_leave()) return this->values();
+
+    int total = 0;
+
+    for (int i = 0; i < this->children(); i++) {
+        if (this->child(i) != nullptr) {
+            total += this->child(i)->leave_level_values();
+        }
+    }
+
+    return total;
+}
+
 } // namespace tree
 
 } // namespace drawable

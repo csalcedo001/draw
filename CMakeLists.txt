@@ -39,9 +39,7 @@ include_directories(
     external/glew-1.13.0/include/
     external/assimp-3.0.1270/include/
     external/bullet-2.81-rev2613/src/
-	b_tree/eda_b_tree/include/
     include/
-	resources/
     .
 )
 
@@ -73,12 +71,15 @@ file(GLOB b_tree_src
     "b_tree/impl/*.ipp"
 )
 file(GLOB_RECURSE b_tree_base_src
-    "b_tree/impl/eda_b_tree/include/*"
+    "b_tree/eda_b_tree/include/*"
 )
 add_executable(b_tree
     ${b_tree_src}
     ${b_tree_base_src}
     ${common_src}
+)
+target_include_directories(b_tree PRIVATE
+    b_tree/eda_b_tree/include/
 )
 target_link_libraries(b_tree
     ${ALL_LIBS}
@@ -94,12 +95,15 @@ file(GLOB binomial_heap_src
     "binomial_heap/impl/*.ipp"
 )
 file(GLOB_RECURSE binomial_heap_base_src
-    "binomial_heap/impl/eda_binomial_heap/include/*"
+    "binomial_heap/eda_binomial_heap/include/*"
 )
 add_executable(binomial_heap
     ${binomial_heap_src}
     ${binomial_heap_base_src}
     ${common_src}
+)
+target_include_directories(binomial_heap PRIVATE
+    binomial_heap/eda_binomial_heap/include/
 )
 target_link_libraries(binomial_heap
     ${ALL_LIBS}
@@ -109,10 +113,11 @@ create_target_launcher(binomial_heap WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_D
 
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
-SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(resources REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(resources REGULAR_EXPRESSION ".*/resources/.*" )
 SOURCE_GROUP(Implementation\ Files REGULAR_EXPRESSION ".*/.*ipp$" )
 SOURCE_GROUP(drawable REGULAR_EXPRESSION ".*/drawable.*" )
-SOURCE_GROUP(drawable/impl REGULAR_EXPRESSION ".*/drawable/.*ipp" )
+SOURCE_GROUP(drawable/impl REGULAR_EXPRESSION ".*/drawable/.*ipp$" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 

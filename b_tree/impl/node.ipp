@@ -41,36 +41,6 @@ bool Node<T, m>::is_leave() {
 	return this->capacity_ == 0 || this->children_[0] == nullptr;
 }
 
-template <typename T, int m>
-int Node<T, m>::leaves() {
-	if (this->is_leave()) return 1;
-
-	int total = 0;
-
-	for (int i = 0; i < this->capacity_; i++) {
-		if (this->children_[i] != nullptr) {
-			total += this->children_[i]->leaves();
-		}
-	}
-
-	return total;
-}
-
-template <typename T, int m>
-int Node<T, m>::leave_level_values() {
-	if (this->is_leave()) return this->capacity_ - 1;
-
-	int total = 0;
-
-	for (int i = 0; i < this->capacity_; i++) {
-		if (this->children_[i] != nullptr) {
-			total += this->children_[i]->leave_level_values();
-		}
-	}
-
-	return total;
-}
-
 } // namespace b_tree
 
 } // namespace drawable
