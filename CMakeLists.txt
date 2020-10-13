@@ -65,52 +65,44 @@ file(GLOB_RECURSE common_src
 )
 
 
-file(GLOB b_tree_src
-    b_tree/main.cpp
-    "b_tree/*.hpp"
-    "b_tree/impl/*.ipp"
+macro(add_drawable)
+    file(GLOB ${OBJECT}_src
+        ${OBJECT}/main.cpp
+        "${OBJECT}/*.hpp"
+        "${OBJECT}/impl/*.ipp"
+    )
+    file(GLOB_RECURSE ${OBJECT}_base_src
+        "${OBJECT}/${BASE}/include/*"
+    )
+    add_executable(${OBJECT}
+        ${${OBJECT}_src}
+        ${${OBJECT}_base_src}
+        ${common_src}
+    )
+    target_include_directories(${OBJECT} PRIVATE
+        ${OBJECT}/${BASE}/include/
+    )
+    target_link_libraries(${OBJECT}
+        ${ALL_LIBS}
+    )
+    set_target_properties(${OBJECT} PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${OBJECT}/")
+    create_target_launcher(${OBJECT} WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${OBJECT}/")
+endmacro()
+
+
+
+add_drawable(
+    OBJECT b_tree
+    BASE eda_b_tree
 )
-file(GLOB_RECURSE b_tree_base_src
-    "b_tree/eda_b_tree/include/*"
+add_drawable(
+    OBJECT binomial_heap
+    BASE eda_binomial_heap
 )
-add_executable(b_tree
-    ${b_tree_src}
-    ${b_tree_base_src}
-    ${common_src}
-)
-target_include_directories(b_tree PRIVATE
-    b_tree/eda_b_tree/include/
-)
-target_link_libraries(b_tree
-    ${ALL_LIBS}
-)
-set_target_properties(b_tree PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/b_tree/")
-create_target_launcher(b_tree WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/b_tree/")
+
+
+
 create_default_target_launcher(b_tree WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/b_tree/")
-
-
-file(GLOB binomial_heap_src
-    binomial_heap/main.cpp
-    "binomial_heap/*.hpp"
-    "binomial_heap/impl/*.ipp"
-)
-file(GLOB_RECURSE binomial_heap_base_src
-    "binomial_heap/eda_binomial_heap/include/*"
-)
-add_executable(binomial_heap
-    ${binomial_heap_src}
-    ${binomial_heap_base_src}
-    ${common_src}
-)
-target_include_directories(binomial_heap PRIVATE
-    binomial_heap/eda_binomial_heap/include/
-)
-target_link_libraries(binomial_heap
-    ${ALL_LIBS}
-)
-set_target_properties(binomial_heap PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/binomial_heap/")
-create_target_launcher(binomial_heap WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/binomial_heap/")
-
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(resources REGULAR_EXPRESSION ".*/.*shader$" )
@@ -121,10 +113,15 @@ SOURCE_GROUP(drawable/impl REGULAR_EXPRESSION ".*/drawable/.*ipp$" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
-add_custom_command(
-   TARGET b_tree POST_BUILD
-   COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/b_tree${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/b_tree"
-)
+macro(add_drawable_custom_command)
+    add_custom_command(
+       TARGET ${OBJECT} POST_BUILD
+       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/${OBJECT}${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/${OBJECT}"
+    )
+endmacro()
+
+add_drawable_custom_command(OBJECT b_tree)
+add_drawable_custom_command(OBJECT binomial_heap)
 
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
