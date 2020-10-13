@@ -28,7 +28,7 @@ float verticalAngle = 0.0f;
 // Initial Field of View
 float initialFoV = 45.0f;
 
-float speed = 3.0f; // 3 units / second
+float speed = 5.0f; // 3 units / second
 float mouseSpeed = 0.005f;
 
 
@@ -59,7 +59,14 @@ void computeMatricesFromInputs(){
 		sin(verticalAngle),
 		cos(verticalAngle) * cos(horizontalAngle)
 	);
-	
+    
+    // Front vector
+    glm::vec3 front = glm::vec3(
+        sin(horizontalAngle),
+        0,
+        cos(horizontalAngle)
+    );
+    
 	// Right vector
 	glm::vec3 right = glm::vec3(
 		sin(horizontalAngle - 3.14f/2.0f), 
@@ -71,21 +78,29 @@ void computeMatricesFromInputs(){
 	glm::vec3 up = glm::cross( right, direction );
 
 	// Move forward
-	if (glfwGetKey( window, GLFW_KEY_UP ) == GLFW_PRESS){
-		position += direction * deltaTime * speed;
+	if (glfwGetKey( window, GLFW_KEY_W ) == GLFW_PRESS){
+		position += front * deltaTime * speed;
 	}
 	// Move backward
-	if (glfwGetKey( window, GLFW_KEY_DOWN ) == GLFW_PRESS){
-		position -= direction * deltaTime * speed;
+	if (glfwGetKey( window, GLFW_KEY_S ) == GLFW_PRESS){
+		position -= front * deltaTime * speed;
 	}
 	// Strafe right
-	if (glfwGetKey( window, GLFW_KEY_RIGHT ) == GLFW_PRESS){
+	if (glfwGetKey( window, GLFW_KEY_D ) == GLFW_PRESS){
 		position += right * deltaTime * speed;
 	}
 	// Strafe left
-	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
+	if (glfwGetKey( window, GLFW_KEY_A ) == GLFW_PRESS){
 		position -= right * deltaTime * speed;
 	}
+    // Move up
+    if (glfwGetKey( window, GLFW_KEY_SPACE ) == GLFW_PRESS){
+        position += up * deltaTime * speed;
+    }
+    // Move down
+    if (glfwGetKey( window, GLFW_KEY_LEFT_SHIFT ) == GLFW_PRESS){
+        position -= up * deltaTime * speed;
+    }
 
 	float FoV = initialFoV;// - 5 * glfwGetMouseWheel(); // Now GLFW 3 requires setting up a callback for this. It's a bit too complicated for this beginner's tutorial, so it's disabled instead.
 
