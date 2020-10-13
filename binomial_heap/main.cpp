@@ -85,7 +85,7 @@ int main() {
 
     int i = 0;
     long long t = time(nullptr);
-    int period = 1;
+    int period = 5;
     
     // VTK
     
@@ -109,7 +109,7 @@ int main() {
         
         binomial_heap.render(0, 0);
         
-        char title[] = "BINOMIAL TREE";
+        char title[] = "BINOMIAL HEAP";
         printText2D(title, -2, 1, 0.5);
         
 

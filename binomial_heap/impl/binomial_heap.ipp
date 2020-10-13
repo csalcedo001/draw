@@ -9,14 +9,14 @@ namespace binomial_heap {
 
 template <typename T>
 void BinomialHeap<T>::render(double x, double y) {
-	double total_size = 0;
-
-	for (auto tree : this->nodes_) {
+    double total_width = 0;
+    
+    for (auto tree : this->nodes_) {
         if (tree != nullptr) {
-            tree->render(x + total_size, y);
-            total_size += tree->width() + 1;
+            tree->render(total_width + x + tree->width() / 2.0, y);
+            total_width += tree->width() + 2;
         }
-	}
+    }
 }
 
 } // binomial_heap
