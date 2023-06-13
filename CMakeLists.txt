@@ -65,7 +65,7 @@ file(GLOB_RECURSE common_src
 )
 
 
-macro(add_drawable)
+macro(add_drawable OBJECT BASE)
     file(GLOB ${OBJECT}_src
         ${OBJECT}/main.cpp
         "${OBJECT}/*.hpp"
@@ -92,13 +92,13 @@ endmacro()
 
 
 add_drawable(
-    OBJECT b_tree
-    BASE eda_b_tree
+    b_tree
+    eda_b_tree
 )
-add_drawable(
-    OBJECT binomial_heap
-    BASE eda_binomial_heap
-)
+# add_drawable(
+#     binomial_heap
+#     eda_binomial_heap
+# )
 
 
 
@@ -113,15 +113,15 @@ SOURCE_GROUP(drawable/impl REGULAR_EXPRESSION ".*/drawable/.*ipp$" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
-macro(add_drawable_custom_command)
+macro(add_drawable_custom_command OBJECT)
     add_custom_command(
-       TARGET ${OBJECT} POST_BUILD
-       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/${OBJECT}${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/${OBJECT}"
+        TARGET ${OBJECT} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/${OBJECT}${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/${OBJECT}"
     )
 endmacro()
 
-add_drawable_custom_command(OBJECT b_tree)
-add_drawable_custom_command(OBJECT binomial_heap)
+add_drawable_custom_command(b_tree)
+# add_drawable_custom_command(binomial_heap)
 
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
