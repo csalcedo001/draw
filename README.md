@@ -24,4 +24,4 @@ Using `b_tree` as the example executable, run it with the following command
 
 A window should pop up with the animation. You should be able to interact by using the mouse to rotate the camera, and AWSD keys to move the camera through space. To scape the animation, press ESC. The following image is what you should expect to see:
 
-![Frontal picture of B-Tree](figs/frontal.jpg)
+![Frontal picture of B-Tree](figs/frontal.png)
