@@ -25,7 +25,7 @@ namespace drawable {
 GLuint vertexbuffer;
 // GLuint MatrixID;
 GLuint ModelID, ViewID, ProjectionID;
-GLuint lightPosID, lightColorID, objectColorID;
+GLuint cameraPosID, lightPosID, lightColorID, objectColorID;
 GLuint programID;
 GLuint VertexArrayID;
 
@@ -124,6 +124,7 @@ void init_render() {
     ViewID = glGetUniformLocation(programID, "view");
     ProjectionID = glGetUniformLocation(programID, "projection");
 
+    cameraPosID = glGetUniformLocation(programID, "cameraPos");
     lightPosID = glGetUniformLocation(programID, "lightPos");
     lightColorID = glGetUniformLocation(programID, "lightColor");
     objectColorID = glGetUniformLocation(programID, "objectColor");
@@ -159,10 +160,12 @@ void render_square(double x, double y) {
     glUniformMatrix4fv(ViewID, 1, GL_FALSE, &ViewMatrix[0][0]);
     glUniformMatrix4fv(ProjectionID, 1, GL_FALSE, &ProjectionMatrix[0][0]);
 
+    glm::vec3 cameraPos = getCameraPosition();
     glm::vec3 lightPos = glm::vec3(0.0f, -5.0f, 5.0f);
     glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
     glm::vec3 objectColor = glm::vec3(0.2f, 0.5f, 0.2f);
 
+    glUniform3fv(cameraPosID, 1, &cameraPos[0]);
     glUniform3fv(lightPosID, 1, &lightPos[0]);
     glUniform3fv(lightColorID, 1, &lightColor[0]);
     glUniform3fv(objectColorID, 1, &objectColor[0]);
